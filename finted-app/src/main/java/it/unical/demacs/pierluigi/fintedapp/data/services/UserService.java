@@ -13,7 +13,7 @@ public interface UserService {
 
     void delete(Long id) throws ElementNotFoundException, NullFieldException;
 
-    List<UserDto> getAll(Long page);
+    List<UserDto> getAll(Integer page);
 
     UserDto get(Long id) throws ElementNotFoundException, NullFieldException;
 

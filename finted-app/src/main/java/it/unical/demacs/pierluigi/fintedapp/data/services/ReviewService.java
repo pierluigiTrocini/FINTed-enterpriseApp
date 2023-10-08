@@ -12,5 +12,5 @@ public interface ReviewService {
 
     void delete(Long id) throws NullFieldException, ElementNotFoundException;
 
-    List<ReviewDto> getAll();
+    List<ReviewDto> getAll(Long userId) throws ElementNotFoundException;
 }

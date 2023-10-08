@@ -12,7 +12,7 @@ public interface PostService {
 
     void delete(Long id) throws NullFieldException, ElementNotFoundException;
 
-    List<PostDto> getAll(Long page) throws ElementNotFoundException;
+    List<PostDto> getAll(Integer page) throws ElementNotFoundException;
 
     PostDto get(Long id) throws ElementNotFoundException, NullFieldException;
 
