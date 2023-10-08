@@ -16,6 +16,7 @@ import it.unical.demacs.pierluigi.fintedapp.dto.PostDto;
 import it.unical.demacs.pierluigi.fintedapp.dto.PostPublishDto;
 import it.unical.demacs.pierluigi.fintedapp.exception.ElementNotFoundException;
 import it.unical.demacs.pierluigi.fintedapp.exception.NullFieldException;
+import it.unical.demacs.pierluigi.fintedapp.utility.DateManager;
 import lombok.RequiredArgsConstructor;
 
 
@@ -34,6 +35,7 @@ public class PostServiceImpl implements PostService {
         newPost.setSeller( userDao.findById(post.getId()).orElseThrow(() -> new ElementNotFoundException("User not found")) );
         newPost.setTitle( post.getTitle() );
         newPost.setStartingPrice( post.getStartingPrice() );
+        newPost.setPublishDate( DateManager.getInstance().currentDate() );
 
         return modelMapper.map(postDao.save(newPost), PostPublishDto.class);
     }

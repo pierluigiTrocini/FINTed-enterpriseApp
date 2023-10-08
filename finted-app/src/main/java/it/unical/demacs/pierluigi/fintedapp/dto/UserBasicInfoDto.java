@@ -1,5 +1,7 @@
 package it.unical.demacs.pierluigi.fintedapp.dto;
 
+import java.sql.Date;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,4 +18,6 @@ public class UserBasicInfoDto extends UserDto {
 
     @NotBlank
     private String lastName;
+
+    private Date registrationDate;
 }
