@@ -12,5 +12,7 @@ public interface FavouriteService {
 
     void delete(Long id) throws NullFieldException, ElementNotFoundException;
 
-    List<FavouriteDto> getAll(Long userId) throws ElementNotFoundException;
+    List<FavouriteDto> getMyFollowers(Long userId) throws ElementNotFoundException;
+
+    List<FavouriteDto> getFollow(Long userId) throws ElementNotFoundException;
 }

@@ -68,6 +68,13 @@ public class GlobalExceptionHandler {
         LoggerFactory.getLogger(ConsoleAppender.class).error(ex.getMessage(), ex);
         return errorResponse(req, ex.getMessage());
     }
+
+    @ExceptionHandler(value = {UnsupportedOperationException.class})
+    @ResponseStatus(HttpStatus.NOT_IMPLEMENTED)
+    public ServiceError handleUnsupportedOperationException(WebRequest req, Exception ex){
+        LoggerFactory.getLogger(ConsoleAppender.class).error(ex.getMessage(), ex);
+        return errorResponse(req, ex.getMessage());
+    }
     
 
 }

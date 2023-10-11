@@ -12,5 +12,7 @@ public interface OfferService {
 
     void delete(Long id) throws NullFieldException, ElementNotFoundException;
 
-    List<OfferDto> getAll(Long id);
+    List<OfferDto> getPostOffers(Long postId);
+
+    List<OfferDto> getUserOffers(Long userId);
 }

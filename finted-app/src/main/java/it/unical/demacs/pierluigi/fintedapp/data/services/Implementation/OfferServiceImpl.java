@@ -49,10 +49,16 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public List<OfferDto> getAll(Long id) {
-        return offerDao.findAll().stream()
+    public List<OfferDto> getPostOffers(Long postId) {
+        return offerDao.findAllByPostId(postId).stream()
             .map(offer -> modelMapper.map(offer, OfferPublishDto.class))
             .collect(Collectors.toList());
     }
-    
+
+    @Override
+    public List<OfferDto> getUserOffers(Long userId) {
+        return offerDao.findAllByUserId(userId).stream()
+            .map(offer -> modelMapper.map(offer, OfferPublishDto.class))
+            .collect(Collectors.toList());
+    }
 }

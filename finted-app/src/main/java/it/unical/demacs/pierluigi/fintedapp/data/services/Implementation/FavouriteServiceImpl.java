@@ -44,9 +44,18 @@ public class FavouriteServiceImpl implements FavouriteService{
     }
 
     @Override
-    public List<FavouriteDto> getAll(Long userId) throws ElementNotFoundException {
-        return favouriteDao.findAll().stream()
+    public List<FavouriteDto> getMyFollowers(Long userId) throws ElementNotFoundException {
+        return userDao.findById(userId).orElseThrow(() -> new ElementNotFoundException("user not found")).getReceivedLikes().stream()
             .map(fav -> modelMapper.map(fav, FavouritePublishDto.class))
             .collect(Collectors.toList());
     }
+
+    @Override
+    public List<FavouriteDto> getFollow(Long userId) throws ElementNotFoundException {
+        return userDao.findById(userId).orElseThrow(() -> new ElementNotFoundException("user not found")).getUserLiked().stream()
+            .map(fav -> modelMapper.map(fav, FavouritePublishDto.class))
+            .collect(Collectors.toList());
+    }
+
+    
 }

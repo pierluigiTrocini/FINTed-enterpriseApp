@@ -66,7 +66,6 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostDto update(PostPublishDto post) throws NullFieldException, ElementNotFoundException {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
