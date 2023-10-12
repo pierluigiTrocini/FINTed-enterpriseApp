@@ -1,0 +1,13 @@
+export * from './favouriteController.service';
+import { FavouriteControllerService } from './favouriteController.service';
+export * from './imageController.service';
+import { ImageControllerService } from './imageController.service';
+export * from './offerController.service';
+import { OfferControllerService } from './offerController.service';
+export * from './postController.service';
+import { PostControllerService } from './postController.service';
+export * from './reviewController.service';
+import { ReviewControllerService } from './reviewController.service';
+export * from './userController.service';
+import { UserControllerService } from './userController.service';
+export const APIS = [FavouriteControllerService, ImageControllerService, OfferControllerService, PostControllerService, ReviewControllerService, UserControllerService];
