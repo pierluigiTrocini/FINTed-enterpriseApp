@@ -39,12 +39,12 @@ public class UserController {
         userService.delete(id);
     }
 
-    @GetMapping("/{page}")
+    @GetMapping("/page/{page}")
     public ResponseEntity<List<UserDto>> getAll(@PathVariable("page") Integer page){
         return ResponseEntity.ok(userService.getAll(page));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<UserDto> get(@PathVariable("id") Long id) throws ElementNotFoundException, NullFieldException{
         return ResponseEntity.ok(userService.get(id));
     }

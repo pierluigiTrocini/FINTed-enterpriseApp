@@ -2,7 +2,7 @@ package it.unical.demacs.pierluigi.fintedapp.dto;
 
 import java.sql.Date;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -13,10 +13,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class UserBasicInfoDto extends UserDto {
-    @NotBlank
+    @NotEmpty
     private String firstName;
 
-    @NotBlank
+    @NotEmpty
     private String lastName;
 
     private Date registrationDate;

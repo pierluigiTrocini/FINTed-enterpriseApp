@@ -1,0 +1,87 @@
+<div class="album py-6 bg-light">
+  <div class="container">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <label for="firstName" class="form-label">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="firstName"
+            id="firstName"
+          />
+        </div>
+        <div class="col-auto">
+          <label for="lastName" class="form-label">Cognome</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="lastName"
+            id="lastName"
+          />
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="username"
+            id="username"
+          />
+        </div>
+        <div class="col-auto">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="email"
+            id="email"
+            placeholder="mario.rossi@email.com"
+          />
+        </div>
+        <div class="col-auto">
+          <label for="password" class="col-form-label">Password</label>
+          <input
+            type="password"
+            formControlName="password"
+            id="password"
+            class="form-control"
+            aria-describedby="passwordHelpInline"
+          />
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <label for="route" class="form-label">Via</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="route"
+            id="route"
+          />
+        </div>
+        <div class="col-auto">
+          <label for="number" class="form-label">Numero</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="number"
+            id="number"
+          />
+        </div>
+        <div class="col-auto">
+          <label for="city" class="form-label">Città</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="city"
+            id="city"
+          />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Registrati</button>
+    </form>
+  </div>
+</div>

@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
             new Credentials(
                 user.getCredentials().getEmail(),
                 user.getCredentials().getUsername(),
-                user.getCredentials().getPassword() //TODO ENCRYPT PASSWOR
+                user.getCredentials().getPassword() //TODO ENCRYPT PASSWORD
             )
         );
         newUser.setAddress(modelMapper.map(user.getAddress(), Address.class));

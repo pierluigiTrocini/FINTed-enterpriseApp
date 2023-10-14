@@ -37,12 +37,12 @@ public class PostController {
         postService.delete(id);
     }
 
-    @GetMapping("/{page}")
+    @GetMapping("/page/{page}")
     public ResponseEntity<List<PostDto>> getAll(@PathVariable("page") Integer page) throws ElementNotFoundException{
         return ResponseEntity.ok(postService.getAll(page));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<PostDto> get(@PathVariable("id") Long id) throws ElementNotFoundException, NullFieldException{
         return ResponseEntity.ok(postService.get(id));
     }
