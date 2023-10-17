@@ -4,7 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserRegistrationDto } from 'src/model/userRegistrationDto';
 import { CredentialsRegistrationDto } from 'src/model/credentialsRegistrationDto';
 import { AddressDto } from 'src/model/addressDto';
-import { HttpStatusCode } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-registration-form',
@@ -34,6 +35,11 @@ export class RegistrationFormComponent implements OnInit {
     });
   }
 
+  handleError(error: HttpErrorResponse) {
+    alert(`Errore: ${error.message}`);
+    return of({ error: true, message: error.message });
+  }
+
   onSubmit(): void {
     try {
       if (this.registrationForm.controls['password'].invalid) {
@@ -56,24 +62,19 @@ export class RegistrationFormComponent implements OnInit {
         },
         id: NaN,
       };
-      this.userService.save(newUser).subscribe(
+      this.userService.save(newUser).pipe(catchError(this.handleError)).subscribe(
         (response) => {
+          console.log(response)
           alert(
             `Utente ${
               this.registrationForm.get('username')?.value
             } registrato con successo!`
           );
-        },
-        (error) => {
-          if (error.status === HttpStatusCode.BadRequest) {
-            alert(`Email inserita già in uso`);
-          }
         }
       );
-    }
-    catch(e: unknown){
-      if(e instanceof Error){
-        alert(e.message)
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        alert(e.message);
       }
     }
   }

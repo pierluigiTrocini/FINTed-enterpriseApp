@@ -1,0 +1,48 @@
+<!-- id?: number;
+    title: string;
+    startingPrice: number;
+    seller?: UserDto; -->
+<div class="album py-6 bg-light">
+  <div class="container">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col">
+          <label for="title" class="form-label">Titolo</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="title"
+            id="title"
+          />
+        </div>
+        <div class="col">
+          <label for="startingPrice" class="form-label"
+            >Prezzo di partenza</label
+          >
+          <input
+            type="number"
+            min="0"
+            class="form-control"
+            formControlName="startingPrice"
+            id="startingPrice"
+          />
+        </div>
+      </div>
+      <div>
+        <label for="image" class="form-label">Inserisci un'immagine</label>
+        <input
+          class="form-control form-control-lg"
+          id="image"
+          formControlName="image"
+          type="file"
+        />
+      </div>
+
+      <div class="my-6">
+        <button type="submit" class="btn btn-success" onsubmit="onSubmit()">
+          Posta
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

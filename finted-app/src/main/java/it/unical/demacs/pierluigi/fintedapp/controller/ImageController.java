@@ -38,7 +38,7 @@ public class ImageController {
     }
 
     @GetMapping("/{post-id}")
-    public ResponseEntity<List<ImageDto>> getAll(@PathVariable("post-id") Long postId) throws ElementNotFoundException{
+    public ResponseEntity<ImageDto> get(@PathVariable("post-id") Long postId) throws ElementNotFoundException{
         return ResponseEntity.ok(imageService.getAll(postId));
     }
     

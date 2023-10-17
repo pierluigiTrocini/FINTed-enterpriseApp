@@ -1,7 +1,6 @@
 package it.unical.demacs.pierluigi.fintedapp.dto;
 
 import java.sql.Date;
-import java.util.List;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,5 +18,5 @@ public class PostPublishDto extends PostDto {
 
     private Date publishDate;
     
-    private List<ImageDto> postImages;
+    private ImageDto postImage;
 }

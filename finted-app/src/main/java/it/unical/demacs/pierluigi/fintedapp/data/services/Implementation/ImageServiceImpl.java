@@ -48,10 +48,8 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public List<ImageDto> getAll(Long postId) throws ElementNotFoundException {
-        return imageDao.findAllByPostId(postId).stream()
-            .map(image -> modelMapper.map( image, ImagePublishDto.class ))
-            .collect(Collectors.toList());
+    public ImageDto getAll(Long postId) throws ElementNotFoundException {
+        return modelMapper.map(imageDao.findByPostId(postId), ImagePublishDto.class);
     }
     
 }

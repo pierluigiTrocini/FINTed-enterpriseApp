@@ -110,13 +110,13 @@ export class ImageControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAll2(postId: number, observe?: 'body', reportProgress?: boolean): Observable<Array<ImageDto>>;
-    public getAll2(postId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ImageDto>>>;
-    public getAll2(postId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ImageDto>>>;
-    public getAll2(postId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public get2(postId: number, observe?: 'body', reportProgress?: boolean): Observable<ImageDto>;
+    public get2(postId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ImageDto>>;
+    public get2(postId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ImageDto>>;
+    public get2(postId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (postId === null || postId === undefined) {
-            throw new Error('Required parameter postId was null or undefined when calling getAll2.');
+            throw new Error('Required parameter postId was null or undefined when calling get2.');
         }
 
         let headers = this.defaultHeaders;
@@ -134,7 +134,7 @@ export class ImageControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<ImageDto>>('get',`${this.basePath}/images/${encodeURIComponent(String(postId))}`,
+        return this.httpClient.request<ImageDto>('get',`${this.basePath}/images/${encodeURIComponent(String(postId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

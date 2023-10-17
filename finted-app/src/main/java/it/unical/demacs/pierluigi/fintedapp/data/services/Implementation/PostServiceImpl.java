@@ -32,7 +32,7 @@ public class PostServiceImpl implements PostService {
     public PostDto save(PostPublishDto post) throws ElementNotFoundException {
         Post newPost = new Post();
 
-        newPost.setSeller( userDao.findById(post.getId()).orElseThrow(() -> new ElementNotFoundException("User not found")) );
+        newPost.setSeller( userDao.findById(post.getSeller().getId()).orElseThrow(() -> new ElementNotFoundException("User not found")) );
         newPost.setTitle( post.getTitle() );
         newPost.setStartingPrice( post.getStartingPrice() );
         newPost.setPublishDate( DateManager.getInstance().currentDate() );

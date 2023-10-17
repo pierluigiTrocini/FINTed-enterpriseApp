@@ -13,5 +13,5 @@ public interface ImageService {
 
     void delete(Long postId, Long imageId) throws NullFieldException, ElementNotFoundException;
 
-    List<ImageDto> getAll(Long postId) throws ElementNotFoundException;
+    ImageDto getAll(Long postId) throws ElementNotFoundException;
 }
