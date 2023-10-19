@@ -34,7 +34,9 @@
           class="form-control form-control-lg"
           id="image"
           formControlName="image"
+          accept="image/*"
           type="file"
+          (change)="onChange($event)"
         />
       </div>
 

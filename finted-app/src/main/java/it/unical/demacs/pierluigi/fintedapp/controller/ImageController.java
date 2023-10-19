@@ -1,7 +1,5 @@
 package it.unical.demacs.pierluigi.fintedapp.controller;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,13 +30,13 @@ public class ImageController {
         return ResponseEntity.ok(imageService.save(image));
     }
 
-    @DeleteMapping("/{post-id}/{image-id}")
-    public void delete(@PathVariable("post-id") Long postId,@PathVariable("image-id") Long imageId) throws NullFieldException, ElementNotFoundException{
-        imageService.delete(postId, imageId);
+    @DeleteMapping("/post/{post-id}")
+    public void delete(@PathVariable("post-id") Long postId) throws NullFieldException, ElementNotFoundException{
+        imageService.delete(postId);
     }
 
     @GetMapping("/{post-id}")
-    public ResponseEntity<ImageDto> get(@PathVariable("post-id") Long postId) throws ElementNotFoundException{
+    public ResponseEntity<ImageDto> get(@PathVariable("post-id") Long postId) throws ElementNotFoundException, NullFieldException{
         return ResponseEntity.ok(imageService.getAll(postId));
     }
     

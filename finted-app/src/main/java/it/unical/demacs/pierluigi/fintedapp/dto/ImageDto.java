@@ -8,5 +8,4 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ImageDto {
-    private Long id;
 }

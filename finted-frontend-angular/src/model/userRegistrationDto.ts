@@ -13,7 +13,7 @@ import { AddressDto } from './addressDto';
 import { CredentialsRegistrationDto } from './credentialsRegistrationDto';
 
 export interface UserRegistrationDto { 
-    id: number;
+    id?: number;
     firstName: string;
     lastName: string;
     registrationDate?: Date;

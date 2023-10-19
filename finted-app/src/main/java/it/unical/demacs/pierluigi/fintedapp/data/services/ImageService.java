@@ -9,9 +9,9 @@ import it.unical.demacs.pierluigi.fintedapp.exception.ImagesLimitExceededExcepti
 import it.unical.demacs.pierluigi.fintedapp.exception.NullFieldException;
 
 public interface ImageService {
-    ImageDto save(ImagePublishDto image) throws NullFieldException, ElementNotFoundException, ImagesLimitExceededException;
+    ImagePublishDto save(ImagePublishDto image) throws NullFieldException, ElementNotFoundException, ImagesLimitExceededException;
 
-    void delete(Long postId, Long imageId) throws NullFieldException, ElementNotFoundException;
+    void delete(Long postId) throws NullFieldException, ElementNotFoundException;
 
-    ImageDto getAll(Long postId) throws ElementNotFoundException;
+    ImageDto getAll(Long postId) throws ElementNotFoundException, NullFieldException;
 }

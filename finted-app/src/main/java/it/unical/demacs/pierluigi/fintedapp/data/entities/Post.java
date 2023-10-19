@@ -10,6 +10,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -33,8 +34,9 @@ public class Post {
     @Column(name = "starting_price")
     private Long startingPrice;
     
-    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Image postImage;
+    @Lob
+    @Column(name = "post_image", nullable = true)
+    private String postImage;
     
     @Column(name = "purchase_date")
     private Date purchaseDate;

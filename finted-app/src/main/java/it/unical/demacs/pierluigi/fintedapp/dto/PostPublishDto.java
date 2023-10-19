@@ -18,5 +18,5 @@ public class PostPublishDto extends PostDto {
 
     private Date publishDate;
     
-    private ImageDto postImage;
+    private String postImage;
 }

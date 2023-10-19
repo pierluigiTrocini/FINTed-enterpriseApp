@@ -16,6 +16,8 @@ import { PostPublishDto } from 'src/model/postPublishDto';
 export class PostFormComponent implements OnInit {
   postForm!: FormGroup;
 
+  imageInput !: File;
+
   constructor(private postService: PostControllerService, private imageService: ImageControllerService) {}
 
   ngOnInit(): void {
@@ -35,14 +37,18 @@ export class PostFormComponent implements OnInit {
     return (object as PostDto).id !== undefined;
   }
 
+  onChange(event: any): void {
+    this.imageInput = event.target.files[0].toString();
+  }
+
   onSubmit(): void {
     let newPost: PostPublishDto = {
       title: this.postForm.get('title')?.value,
       startingPrice: this.postForm.get('startingPrice')?.value,
-      postImages: this.postForm.get('image')?.value,
       seller: {
         id: 0,
       },
+      postImage: this.postForm.get('image')?.value
     };
 
     this.postService

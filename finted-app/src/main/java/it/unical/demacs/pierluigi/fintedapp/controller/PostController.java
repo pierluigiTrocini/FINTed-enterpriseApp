@@ -17,6 +17,7 @@ import it.unical.demacs.pierluigi.fintedapp.data.services.PostService;
 import it.unical.demacs.pierluigi.fintedapp.dto.PostDto;
 import it.unical.demacs.pierluigi.fintedapp.dto.PostPublishDto;
 import it.unical.demacs.pierluigi.fintedapp.exception.ElementNotFoundException;
+import it.unical.demacs.pierluigi.fintedapp.exception.ImagesLimitExceededException;
 import it.unical.demacs.pierluigi.fintedapp.exception.NullFieldException;
 import lombok.RequiredArgsConstructor;
 
@@ -28,7 +29,7 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/")
-    public ResponseEntity<PostDto> save(@RequestBody PostPublishDto post) throws ElementNotFoundException{
+    public ResponseEntity<PostDto> save(@RequestBody PostPublishDto post) throws ElementNotFoundException, NullFieldException, ImagesLimitExceededException{
         return ResponseEntity.ok(postService.save(post));
     }
 

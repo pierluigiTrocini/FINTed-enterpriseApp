@@ -11,5 +11,4 @@
  */
 
 export interface ImageDto { 
-    id?: number;
 }

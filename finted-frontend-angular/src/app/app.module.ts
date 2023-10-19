@@ -14,6 +14,7 @@ import { OfferControllerService } from 'src/api/offerController.service';
 import { ReviewControllerService } from 'src/api/reviewController.service';
 import { PostFormComponent } from './post-form/post-form.component';
 import { DebugComponent } from './debug/debug.component';
+import { PostListVisualizationComponent } from './post-list-visualization/post-list-visualization.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DebugComponent } from './debug/debug.component';
     RegistrationFormComponent,
     PostFormComponent,
     DebugComponent,
+    PostListVisualizationComponent,
   ],
   imports: [
     BrowserModule,

@@ -61,21 +61,16 @@ export class ImageControllerService {
      * 
      * 
      * @param postId 
-     * @param imageId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public delete5(postId: number, imageId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public delete5(postId: number, imageId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public delete5(postId: number, imageId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public delete5(postId: number, imageId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public delete5(postId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public delete5(postId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public delete5(postId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public delete5(postId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (postId === null || postId === undefined) {
             throw new Error('Required parameter postId was null or undefined when calling delete5.');
-        }
-
-        if (imageId === null || imageId === undefined) {
-            throw new Error('Required parameter imageId was null or undefined when calling delete5.');
         }
 
         let headers = this.defaultHeaders;
@@ -93,7 +88,7 @@ export class ImageControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('delete',`${this.basePath}/images/${encodeURIComponent(String(postId))}/${encodeURIComponent(String(imageId))}`,
+        return this.httpClient.request<any>('delete',`${this.basePath}/images/post/${encodeURIComponent(String(postId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

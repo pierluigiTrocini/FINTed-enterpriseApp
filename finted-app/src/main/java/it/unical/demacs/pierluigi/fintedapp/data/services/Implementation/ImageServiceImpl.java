@@ -1,15 +1,10 @@
 package it.unical.demacs.pierluigi.fintedapp.data.services.Implementation;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import it.unical.demacs.pierluigi.fintedapp.data.dao.ImageDao;
 import it.unical.demacs.pierluigi.fintedapp.data.dao.PostDao;
-import it.unical.demacs.pierluigi.fintedapp.data.entities.Image;
+import it.unical.demacs.pierluigi.fintedapp.data.entities.Post;
 import it.unical.demacs.pierluigi.fintedapp.data.services.ImageService;
 import it.unical.demacs.pierluigi.fintedapp.dto.ImageDto;
 import it.unical.demacs.pierluigi.fintedapp.dto.ImagePublishDto;
@@ -21,35 +16,50 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ImageServiceImpl implements ImageService {
-    private final ImageDao imageDao;
     private final PostDao postDao;
 
-    private final ModelMapper modelMapper;
-    
     @Override
-    public ImageDto save(ImagePublishDto image)
+    public ImagePublishDto save(ImagePublishDto image)
             throws NullFieldException, ElementNotFoundException, ImagesLimitExceededException {
-        Image newImage = new Image();
+        Post post = postDao
+                .findById(Optional.ofNullable(image.getPostId())
+                        .orElseThrow(() -> new NullFieldException("no post id as request param")))
+                .orElseThrow(() -> new ElementNotFoundException("post not found"));
 
-        newImage.setPost( postDao.findById( image.getPost().getId() ).orElseThrow(() -> new ElementNotFoundException("Post not found")) );
-        newImage.setData( image.getData() );
-            
-        return modelMapper.map( imageDao.save(newImage) , ImagePublishDto.class);
+        post.setPostImage(image.getData());
+
+        ImagePublishDto imageResponse = null;
+
+        if( postDao.save(post) != null )
+                imageResponse = new ImagePublishDto(image.getPostId(), image.getData());
+        
+
+        return imageResponse;
     }
 
     @Override
-    public void delete(Long postId, Long imageId) throws NullFieldException, ElementNotFoundException {
-        if( !postDao.existsById(Optional.ofNullable(postId).orElseThrow(() -> new NullFieldException("no post id as request param"))) ) 
-            throw new ElementNotFoundException("Post not found");
-        if( !imageDao.existsById(Optional.ofNullable(imageId).orElseThrow(() -> new NullFieldException("no image id as request param"))))
-            throw new ElementNotFoundException("Image not found");
+    public void delete(Long postId) throws NullFieldException, ElementNotFoundException {
+        Post post = postDao
+                .findById(Optional.ofNullable(postId)
+                        .orElseThrow(() -> new NullFieldException("no post id as request param")))
+                .orElseThrow(() -> new ElementNotFoundException("post not found"));
 
-        imageDao.deleteById(imageId);
+        if (post.getPostImage() != null)
+                post.setPostImage(null);
     }
 
     @Override
-    public ImageDto getAll(Long postId) throws ElementNotFoundException {
-        return modelMapper.map(imageDao.findByPostId(postId), ImagePublishDto.class);
+    public ImageDto getAll(Long postId) throws ElementNotFoundException, NullFieldException {
+        Post post = postDao
+                .findById(Optional.ofNullable(postId)
+                        .orElseThrow(() -> new NullFieldException("no post id as request param")))
+                .orElseThrow(() -> new ElementNotFoundException("post not found"));
+        
+        ImagePublishDto imageResponse = new ImagePublishDto();
+        imageResponse.setPostId(post.getId());
+        imageResponse.setData(post.getPostImage());
+
+        return imageResponse;
     }
-    
+
 }

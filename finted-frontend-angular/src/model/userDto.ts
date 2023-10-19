@@ -11,5 +11,5 @@
  */
 
 export interface UserDto { 
-    id: number;
+    id?: number;
 }

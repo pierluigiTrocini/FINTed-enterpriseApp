@@ -105,13 +105,13 @@ export class ReviewControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAll3(userId: number, observe?: 'body', reportProgress?: boolean): Observable<Array<ReviewDto>>;
-    public getAll3(userId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ReviewDto>>>;
-    public getAll3(userId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ReviewDto>>>;
-    public getAll3(userId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getAll2(userId: number, observe?: 'body', reportProgress?: boolean): Observable<Array<ReviewDto>>;
+    public getAll2(userId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ReviewDto>>>;
+    public getAll2(userId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ReviewDto>>>;
+    public getAll2(userId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling getAll3.');
+            throw new Error('Required parameter userId was null or undefined when calling getAll2.');
         }
 
         let headers = this.defaultHeaders;

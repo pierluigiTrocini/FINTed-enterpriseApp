@@ -5,10 +5,11 @@ import java.util.List;
 import it.unical.demacs.pierluigi.fintedapp.dto.PostDto;
 import it.unical.demacs.pierluigi.fintedapp.dto.PostPublishDto;
 import it.unical.demacs.pierluigi.fintedapp.exception.ElementNotFoundException;
+import it.unical.demacs.pierluigi.fintedapp.exception.ImagesLimitExceededException;
 import it.unical.demacs.pierluigi.fintedapp.exception.NullFieldException;
 
 public interface PostService {
-    PostDto save(PostPublishDto post) throws ElementNotFoundException;
+    PostDto save(PostPublishDto post) throws ElementNotFoundException, NullFieldException, ImagesLimitExceededException;
 
     void delete(Long id) throws NullFieldException, ElementNotFoundException;
 
