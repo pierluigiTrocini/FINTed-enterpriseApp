@@ -4,6 +4,7 @@ export * from './favouriteDto';
 export * from './favouritePublishDto';
 export * from './imageDto';
 export * from './imagePublishDto';
+export * from './imagesBody';
 export * from './offerDto';
 export * from './offerPublishDto';
 export * from './postDto';

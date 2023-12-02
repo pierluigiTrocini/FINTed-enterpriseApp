@@ -19,6 +19,7 @@ import { Observable }                                        from 'rxjs';
 
 import { ImageDto } from '../model/imageDto';
 import { ImagePublishDto } from '../model/imagePublishDto';
+import { ImagesBody } from '../model/imagesBody';
 import { ServiceError } from '../model/serviceError';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -142,17 +143,24 @@ export class ImageControllerService {
     /**
      * 
      * 
+     * @param id 
      * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public save5(body: ImagePublishDto, observe?: 'body', reportProgress?: boolean): Observable<ImageDto>;
-    public save5(body: ImagePublishDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ImageDto>>;
-    public save5(body: ImagePublishDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ImageDto>>;
-    public save5(body: ImagePublishDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public save5(id: number, body?: ImagesBody, observe?: 'body', reportProgress?: boolean): Observable<ImagePublishDto>;
+    public save5(id: number, body?: ImagesBody, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ImagePublishDto>>;
+    public save5(id: number, body?: ImagesBody, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ImagePublishDto>>;
+    public save5(id: number, body?: ImagesBody, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling save5.');
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling save5.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (id !== undefined && id !== null) {
+            queryParameters = queryParameters.set('id', <any>id);
         }
 
         let headers = this.defaultHeaders;
@@ -175,9 +183,10 @@ export class ImageControllerService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<ImageDto>('post',`${this.basePath}/images/`,
+        return this.httpClient.request<ImagePublishDto>('post',`${this.basePath}/images/`,
             {
                 body: body,
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

@@ -16,9 +16,13 @@ import { PostPublishDto } from 'src/model/postPublishDto';
 export class PostFormComponent implements OnInit {
   postForm!: FormGroup;
 
-  imageInput !: File;
+  selectedFile: File | null = null;
+  imageString ?: string;
 
-  constructor(private postService: PostControllerService, private imageService: ImageControllerService) {}
+  constructor(
+    private postService: PostControllerService,
+    private imageService: ImageControllerService
+  ) {}
 
   ngOnInit(): void {
     this.postForm = new FormGroup({
@@ -33,12 +37,23 @@ export class PostFormComponent implements OnInit {
     return of({ error: true, message: error.message });
   }
 
-  isPostDto(object: { error: boolean; message: string; } | PostDto): object is PostDto {
+  isPostDto(
+    object: { error: boolean; message: string } | PostDto
+  ): object is PostDto {
     return (object as PostDto).id !== undefined;
   }
 
-  onChange(event: any): void {
-    this.imageInput = event.target.files[0].toString();
+  onFileSelected(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const files = target.files as FileList;
+    this.selectedFile = files[0];
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64String = reader.result as string;
+      this.imageString = base64String
+    };
+    reader.readAsDataURL(this.selectedFile);
   }
 
   onSubmit(): void {
@@ -48,12 +63,9 @@ export class PostFormComponent implements OnInit {
       seller: {
         id: 0,
       },
-      postImage: this.postForm.get('image')?.value
+      postImage: this.imageString
     };
 
-    this.postService
-      .save2(newPost)
-      .pipe(catchError(this.handleError))
-      .subscribe((response) => {console.log(response)});
+    this.postService.save2(newPost).subscribe(response => console.log(response));
   }
 }

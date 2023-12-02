@@ -15,6 +15,7 @@ import { ReviewControllerService } from 'src/api/reviewController.service';
 import { PostFormComponent } from './post-form/post-form.component';
 import { DebugComponent } from './debug/debug.component';
 import { PostListVisualizationComponent } from './post-list-visualization/post-list-visualization.component';
+import { UserListVisualizationComponent } from './user-list-visualization/user-list-visualization.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PostListVisualizationComponent } from './post-list-visualization/post-l
     PostFormComponent,
     DebugComponent,
     PostListVisualizationComponent,
+    UserListVisualizationComponent,
   ],
   imports: [
     BrowserModule,
