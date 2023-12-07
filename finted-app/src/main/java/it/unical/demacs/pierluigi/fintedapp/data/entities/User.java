@@ -30,10 +30,12 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "username")
+    private String username;
+
     @Embedded
     @AttributeOverrides({
         @AttributeOverride(name = "email", column = @Column(name = "email", unique = true)),
-        @AttributeOverride(name = "username", column = @Column(name = "username", unique = true)),
         @AttributeOverride(name = "password", column = @Column(name = "password"))
     })
     private Credentials credentials;
