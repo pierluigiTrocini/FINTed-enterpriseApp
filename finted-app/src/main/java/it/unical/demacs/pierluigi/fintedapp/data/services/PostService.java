@@ -3,6 +3,8 @@ package it.unical.demacs.pierluigi.fintedapp.data.services;
 import java.util.List;
 
 import it.unical.demacs.pierluigi.fintedapp.dto.PostDto;
+import it.unical.demacs.pierluigi.fintedapp.exception.ElementNotFoundException;
+import it.unical.demacs.pierluigi.fintedapp.exception.NullFieldException;
 
 public interface PostService {
     PostDto save(PostDto post);
@@ -11,7 +13,7 @@ public interface PostService {
 
     List<PostDto> getAll(Integer page);
 
-    PostDto get(Long id);
+    PostDto get(Long id) throws ElementNotFoundException, NullFieldException;
 
-    PostDto update(PostDto post);
+    PostDto update(PostDto post) throws ElementNotFoundException, NullFieldException;
 }

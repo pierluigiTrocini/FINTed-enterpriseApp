@@ -4,14 +4,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.security.auth.login.CredentialException;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import it.unical.demacs.pierluigi.fintedapp.data.dao.UserDao;
-import it.unical.demacs.pierluigi.fintedapp.data.entities.Credentials;
 import it.unical.demacs.pierluigi.fintedapp.data.entities.User;
 import it.unical.demacs.pierluigi.fintedapp.data.services.UserService;
 import it.unical.demacs.pierluigi.fintedapp.dto.UserPersonalProfileDto;
@@ -31,8 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        userDao.deleteById(id);
     }
 
     @Override
